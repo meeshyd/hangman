@@ -21,6 +21,7 @@ var guessesLeft = 10;
 
 
 function start() {
+	//reset
 	wrongLetters = [];
 	guessesLeft = 10;
 	blanksWins = [];
@@ -45,7 +46,7 @@ function checkLetters(letters) {
 	// compare user selections against chosen word
 	var letterChoice = false;
 
-	for (var i=0; i<numberOfBlanks; i++) {
+	for (var i = 0; i<numberOfBlanks; i++) {
 		if (letters===wordChoice[i]){
 			letterChoice = true;
 		}
@@ -53,23 +54,20 @@ function checkLetters(letters) {
 	// if user letter matches, then the above loop assigns true to if 
 	// the above loop is true run this
 	if (letterChoice) {
-		for (i=0; i<numberOfBlanks; i++) {
+		for (i = 0; i<numberOfBlanks; i++) {
 			if (letters===wordChoice[i]){
-			blanksWins[i] = letters;
+			blanksWins[i] = letters;	
 		}	
-	}
 	// if incorrect guessed letter goes to wrong letters array
 	// if incorrect also subtract 1 from guessesLeft
-	} else {
-		guessesLeft--;
-		wrongLetters.push(letters);
+		}
+	}else {
+		if(wrongLetters.indexOf(letters)> -1){
+              } else{
+          wrongLetters.push(letters);
+          guessesLeft--;
+		}	
 	}
-
-	//to check if letter is already in wrong guesses what we want to do is 
-	//set up if else so that will run a for loop that will iterate over all
-	//the wrong letters and then use the if else to check if already exists
-
-	// console.log('wrong guess', wrongLetters);
 }
 
 
@@ -82,16 +80,16 @@ function gameOver() {
     //determine win or loss
 	if(wordChoiceLetters.join(" ") === blanksWins.join(" ")){
         winCount++;
-        document.getElementById('wins').innerHTML = winCount;
         alert("Mathematical! You Win!");
+        document.getElementById('wins').innerHTML = winCount;
         //reset game by calling start function
         start();
     }
     if (guessesLeft === 0){
         lossCount++;
+        alert("UNACCEPTABLE! No guesses left!");   
         document.getElementById('losses').innerHTML = lossCount;
         document.getElementById('wrong').innerHTML = "";
-        alert("UNACCEPTABLE! No guesses left!");        
         //reset game by calling start function
         start();	
 	}
