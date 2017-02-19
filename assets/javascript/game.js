@@ -89,6 +89,7 @@ function gameOver() {
         winCount++;
         alert("Mathematical! You Win!");
         document.getElementById('wins').innerHTML = winCount;
+        document.getElementById('wrong').innerHTML = "";
         //reset game by calling start function
         start();
     }
