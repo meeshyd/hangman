@@ -19,9 +19,10 @@ var winCount = 0;
 var lossCount= 1;
 var guessesLeft = 10;
 
-
+//START FUNCTION - resets variables from prior round, 
+//generates random word and splits into array of letters and array of blanks based on length
 function start() {
-	//reset
+	//reset variables
 	wrongLetters = [];
 	guessesLeft = 10;
 	blanksWins = [];
@@ -31,13 +32,15 @@ function start() {
 	wordChoiceLetters = wordChoice.split('');
 	//determine # blanks for each letter in random word by finding length of lettersInSelected
 	numberOfBlanks = wordChoiceLetters.length;
-
+	//fills blanksWins array with # of blanks per wordChoiceletters length
 	for( var i = 0; i < numberOfBlanks; i++) {
 		blanksWins.push('_');
 	}
 	document.getElementById('blanks').innerHTML=blanksWins.join(" ");
 	document.getElementById('guesses-left').innerHTML=guessesLeft;
 }
+//CHECKING FUNCTION - verifies user key press is a letter.
+//If it is, checks if it is in computer word
 
 function checkLetters(letters) {
 //check is user input is a letter
@@ -57,6 +60,7 @@ function checkLetters(letters) {
 		// if user letter matches, then the above loop assigns true to if 
 		// the above loop is true run this
 		if (letterChoice) {
+
 			for (i = 0; i<numberOfBlanks; i++) {
 				if (letters===wordChoice[i]){
 				blanksWins[i] = letters;	
@@ -77,7 +81,7 @@ function checkLetters(letters) {
 
 }
 
-
+// END OF GAME FUNCTION - DETERMINES WIN/LOSE, UPDATES HTML, RESETS GAME
 function gameOver() {
 	//write wins/losses to HTML
 	//update HTML with letters in word and guess left
@@ -87,26 +91,31 @@ function gameOver() {
     //determine win or loss
 	if(wordChoiceLetters.join(" ") === blanksWins.join(" ")){
         winCount++;
-        alert("Mathematical! You Win!");
+        // alert("Mathematical! You Win!");
         document.getElementById('wins').innerHTML = winCount;
         document.getElementById('wrong').innerHTML = "";
         //reset game by calling start function
-        start();
+        //also added delay to allow final letter to display before reset
+        setTimeout(function() { start(); }, 700);
     }
     if (guessesLeft === 0){
         lossCount++;
-        alert("UNACCEPTABLE! No guesses left!");   
+        // alert("UNACCEPTABLE! No guesses left!");   
         document.getElementById('losses').innerHTML = lossCount;
         document.getElementById('wrong').innerHTML = "";
         //reset game by calling start function
-        start();	
+        //also added delay to allow final letter to display before reset
+        setTimeout(function() { start(); }, 700);	
 	}
 }
 
-/*runs start function*/
+//RUN START FUNCTION - this calls the start function, which starts the game.
 start();
-/*get user input and store in userGuess variable. 
-run through check function. also calls gameOver function*/
+
+//RECORD USER KEY PRESS FUNCTION
+//get user input and store in userGuess variable. 
+//run through check function. also calls gameOver function
+//to check for win/lose with every key press
 document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 	checkLetters(userGuess);
