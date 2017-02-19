@@ -6,23 +6,17 @@ var wordBank = [
 	'marceline',
 	'jake',
 	'beemo',
-	'memow',
-]
+	'memow'
+];
 
 var wordChoice = "";
 var wordChoiceLetters = [];
 var numberOfBlanks = 0;
 var blanksWins = [];
 var wrongLetters = [];
-// 	correct letters??
-//  repeat letters??
-
-// show guessed, correct, wrong letters on page (add to HTML)
-// show blanks for word pick and change to letters in word pick as user guesses letters
-
 //score keeping
 var winCount = 0;
-var lossCount = 0;
+var lossCount= 1;
 var guessesLeft = 10;
 
 
@@ -36,18 +30,13 @@ function start() {
 	wordChoiceLetters = wordChoice.split("");
 	//determine # blanks for each letter in random word by finding length of lettersInSelected
 	numberOfBlanks = wordChoiceLetters.length;
-	console.log (wordChoice);
-	console.log (numberOfBlanks);
 
 	for( var i = 0; i < numberOfBlanks; i++) {
 		blanksWins.push("_");
 	}
-	console.log(blanksWins);
 	document.getElementById('blanks').innerHTML=blanksWins.join(" ");
-	document.getElementById('guesses').innerHTML=guessesLeft;
+	document.getElementById('guesses-left').innerHTML=guessesLeft;
 }
-/*runs start function*/
-start();
 
 function checkLetters(letters) {
 
@@ -55,44 +44,65 @@ function checkLetters(letters) {
 	
 	// compare user selections against chosen word
 	var letterChoice = false;
-	for (i=0; i<numberOfBlanks; i++) {
+
+	for (var i=0; i<numberOfBlanks; i++) {
 		if (letters===wordChoice[i]){
 			letterChoice = true;
 		}
 	}
-	// if user letter matches, then the above loop assigns true to if the above loop is true run this
+	// if user letter matches, then the above loop assigns true to if 
+	// the above loop is true run this
 	if (letterChoice) {
 		for (i=0; i<numberOfBlanks; i++) {
 			if (letters===wordChoice[i]){
 			blanksWins[i] = letters;
 		}	
 	}
-	console.log('inside check letter ', blanksWins);
 	// if incorrect guessed letter goes to wrong letters array
 	// if incorrect also subtract 1 from guessesLeft
 	} else {
-		guessesLeft --;
+		guessesLeft--;
 		wrongLetters.push(letters);
 	}
-	console.log('wrong guess in check letter', wrongLetters);
+
+	//to check if letter is already in wrong guesses what we want to do is 
+	//set up if else so that will run a for loop that will iterate over all
+	//the wrong letters and then use the if else to check if already exists
+
+	// console.log('wrong guess', wrongLetters);
 }
 
-function addHTML() {
-	//letters that are in word
-	//guesses left
-	//wrongly guessed letters
-	//determine win or lose
+
+function gameOver() {
+	//write wins/losses to HTML
+	//update HTML with letters in word and guess left
+    document.getElementById('guesses-left').innerHTML = guessesLeft;
+    document.getElementById('wrong').innerHTML = wrongLetters.join(" ");
+    document.getElementById('blanks').innerHTML = blanksWins.join(" ");
+    //determine win or loss
+	if(wordChoiceLetters.join(" ") === blanksWins.join(" ")){
+        winCount++;
+        document.getElementById('wins').innerHTML = winCount;
+        alert("Mathematical! You Win!");
+        //reset game by calling start function
+        start();
+    }
+    if (guessesLeft === 0){
+        lossCount++;
+        document.getElementById('losses').innerHTML = lossCount;
+        document.getElementById('wrong').innerHTML = "";
+        alert("UNACCEPTABLE! No guesses left!");        
+        //reset game by calling start function
+        start();	
+	}
 }
 
-document.onkeyup = function() {
-	//takes user input
-	//runs through checkLetters
+/*runs start function*/
+start();
+/*get user input and store in userGuess variable. 
+run through check function. also calls gameOver function*/
+document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	console.log("typed letter: "+ userGuess);
 	checkLetters(userGuess);
-
-}
-
-function restart() {
-	//call start function when player wins or loses
+	gameOver();
 }
