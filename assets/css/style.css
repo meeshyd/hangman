@@ -1,0 +1,77 @@
+html {
+	background: url(../images/background.jpg) no-repeat center center fixed; 
+ 	-webkit-background-size: cover;
+ 	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+/*	font-family: 'Open Sans', sans-serif;*/
+font-family: 'Coming Soon', cursive;
+}
+
+h1, h2, h3 {
+	font-family: 'Coming Soon', cursive;
+}
+
+h1 {
+	font-size: 50px;
+	padding-top: 20px;
+}
+h2 {
+	font-size: 35px;
+}
+
+p {
+	line-height: 200%;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#header {
+	position: fixed;
+	margin: 0 auto;
+	text-align: center;
+	height: 150px;
+	width: 100%;
+	z-index: 100;
+}
+
+#main-container {
+	margin: 0 auto;
+	width: 70%;
+/*	background-color: black;*/
+	height: 400px;
+}
+
+#game-container,#winLoss-Container {
+	overflow:auto;
+	background-color: rgba(255,255,255,.9);
+	margin-top: 160px;
+	border-radius: 5px;
+	-webkit-box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+	-moz-box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Firefox 3.5 - 3.6 */
+	box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+#winLoss-Container {
+	width: 15%;
+	float: left;
+	margin-right: 5%;
+	padding: 3%;
+}
+
+#game-container {
+	width: 65%;
+	float: left;
+	padding: 15px;
+
+}
+
+#blanks {
+	font-size: 50px;
+	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 10px;
+	letter-spacing: 0.1em;
+}

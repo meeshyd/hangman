@@ -2,7 +2,6 @@ var wordBank = [
 	'gunter',
 	'finn',
 	'lemongrab',
-	'prismo',
 	'marceline',
 	'jake',
 	'beemo',
@@ -16,7 +15,7 @@ var blanksWins = [];
 var wrongLetters = [];
 //score keeping
 var winCount = 0;
-var lossCount= 1;
+var lossCount= 0;
 var guessesLeft = 10;
 
 //START FUNCTION - resets variables from prior round, 
@@ -94,6 +93,9 @@ function gameOver() {
         // alert("Mathematical! You Win!");
         document.getElementById('wins').innerHTML = winCount;
         document.getElementById('wrong').innerHTML = "";
+        
+        //needs to call image that corresponds to wordChoice
+
         //reset game by calling start function
         //also added delay to allow final letter to display before reset
         setTimeout(function() { start(); }, 700);
