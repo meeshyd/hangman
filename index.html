@@ -3,16 +3,16 @@
 <head>
 	<title>Adventure Time Hangman</title>
 
+	<link href="https://fonts.googleapis.com/css?family=Pangolin|Coming+Soon|Open+Sans:400,600,700|Cinzel:900&effect=fragile|outline" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link href="https://fonts.googleapis.com/css?family=Coming+Soon|Open+Sans:400,600,700" rel="stylesheet">
 	
 </head>
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h1>Adventure Time</h1>
-			<h2>Hangman</h2>
+			<h1 class="font-effect-fragile font-effect-outline">Adventure Time</h1>
+			<h2 class="font-effect-fragile font-effect-outline">Hangman</h2>
 		</div>
 		<div id="main-container">
 			<aside id="winLoss-Container">
@@ -20,8 +20,12 @@
 				<p>Losses: <span id="losses"></span></p>
 			</aside>
 			<div id="game-container">
-				<img class="character" src="">
+				<div id="imgWrap">
+					<img id="characterImg" src="">
+					<p id="randomMsg"></p>
+				</div>
 				<p id="blanks"></p>
+				<p id="invalid-char"></p>
 				<p>Wrong Guesses: <span id="wrong"></span></p>
 				<p>Guesses Left: <span id="guesses-left"></span></p>
 			</div>

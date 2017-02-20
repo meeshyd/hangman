@@ -21,12 +21,28 @@ var guessesLeft = 10;
 //START FUNCTION - resets variables from prior round, 
 //generates random word and splits into array of letters and array of blanks based on length
 function start() {
-	//reset variables
+	//using the following array until I figure out a better way to display correct images :) :) 
+	var picBank = [
+	'assets/images/gunter.png',
+	'assets/images/finn.png',
+	'assets/images/lemongrab.png',
+	'assets/images/marceline.png',
+	'assets/images/jake.png',
+	'assets/images/beemo.png',
+	'assets/images/memow.png'
+	];
+	//reset winner image/message & variables
+	document.getElementById('characterImg').style.display="none";
+	document.getElementById('characterImg').innerHTML = "";
+	document.getElementById('characterImg').src = "";
+	document.getElementById('randomMsg').innerHTML = "";
 	wrongLetters = [];
 	guessesLeft = 10;
 	blanksWins = [];
 	//pick word from word bank
 	wordChoice = wordBank[Math.floor(Math.random() * wordBank.length)];
+	//find image that corresponds to wordChoice
+	picChoice = picBank[wordBank.indexOf(wordChoice)];
 	//split word into letters
 	wordChoiceLetters = wordChoice.split('');
 	//determine # blanks for each letter in random word by finding length of lettersInSelected
@@ -75,13 +91,21 @@ function checkLetters(letters) {
 			}	
 		}
 	} else {
-		alert ('Letters only!');
+		// alert ('Letters only!');
+		document.getElementById('invalid-char').innerHTML = ('What the lump?! Invalid character!');
 	}
 
 }
 
 // END OF GAME FUNCTION - DETERMINES WIN/LOSE, UPDATES HTML, RESETS GAME
 function gameOver() {
+	//Array of favorite Adventure Time phrases to display on wins, not meant to correlate to character
+	var winMsg = [
+	'Mathematical!',
+	'Slamacow!',
+	'Tops blueby!',
+	'Lumping Righteousness!'
+	];
 	//write wins/losses to HTML
 	//update HTML with letters in word and guess left
     document.getElementById('guesses-left').innerHTML = guessesLeft;
@@ -90,24 +114,27 @@ function gameOver() {
     //determine win or loss
 	if(wordChoiceLetters.join(" ") === blanksWins.join(" ")){
         winCount++;
-        // alert("Mathematical! You Win!");
+
+        //update win counter & reset wrong letters bank
         document.getElementById('wins').innerHTML = winCount;
         document.getElementById('wrong').innerHTML = "";
-        
-        //needs to call image that corresponds to wordChoice
-
+        //display Adventure Time character image that corresponds to wordChoice and a win message 
+        document.getElementById('characterImg').style.display="block";
+        document.getElementById('characterImg').src = picChoice;
+        document.getElementById('randomMsg').innerHTML = winMsg[Math.floor(Math.random() * winMsg.length)];
         //reset game by calling start function
         //also added delay to allow final letter to display before reset
-        setTimeout(function() { start(); }, 700);
+        setTimeout(function() { start(); }, 1300);
     }
     if (guessesLeft === 0){
         lossCount++;
-        // alert("UNACCEPTABLE! No guesses left!");   
+        document.getElementById('characterImg').style.display="block";
+        document.getElementById('characterImg').src = 'assets/images/lemongrab.gif';
         document.getElementById('losses').innerHTML = lossCount;
         document.getElementById('wrong').innerHTML = "";
         //reset game by calling start function
         //also added delay to allow final letter to display before reset
-        setTimeout(function() { start(); }, 700);	
+        setTimeout(function() { start(); }, 1300);	
 	}
 }
 
@@ -120,6 +147,7 @@ start();
 //to check for win/lose with every key press
 document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+	document.getElementById('invalid-char').innerHTML = ('');
 	checkLetters(userGuess);
 	gameOver();
 }
