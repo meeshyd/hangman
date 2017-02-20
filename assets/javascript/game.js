@@ -31,10 +31,9 @@ function start() {
 	'assets/images/beemo.png',
 	'assets/images/memow.png'
 	];
-	//reset winner image/message & variables
-	document.getElementById('characterImg').style.display="none";
+	//resets image, clears win message & variables
 	document.getElementById('characterImg').innerHTML = "";
-	document.getElementById('characterImg').src = "";
+	document.getElementById('characterImg').src = 'assets/images/questionMark.png';
 	document.getElementById('randomMsg').innerHTML = "";
 	wrongLetters = [];
 	guessesLeft = 10;
