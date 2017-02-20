@@ -1,6 +1,8 @@
+/*GENERAL CSS*/
 html {
+	/*the following styling makes the background fit to the viewport*/
 	background: url(../images/background.jpg) no-repeat center center fixed; 
- 	-webkit-background-size: cover;
+ 	-webkit-background-size: cover; 
  	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
@@ -11,11 +13,38 @@ color: #222223;
 font-family: 'Coming Soon', cursive;
 }
 
-/*h1, h2, h3 {
-	font-family: 'Coming Soon', cursive;
-}*/
+p {
+	line-height: 200%;
+	font-size: 15px;
+	font-weight: 600;
+}
+#main-container {
+	margin: 40px auto 0 auto;
+	width: 70%;
+	height: 400px;
+}
+/*styling for side and main divs */
+#game-container,#winLoss-Container {
+	background-color: rgba(255,255,255,.9);
+	border-radius: 5px;
+	/*the following styling adds a shadow to the boxes*/
+	-webkit-box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+	-moz-box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Firefox 3.5 - 3.6 */
+	box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+	border: 2px solid #222223;
+}
+/*END GENERAL CSS*/
 
-h1.font-effect-outline {
+/*HEADER CSS*/
+#header {
+	padding-top: 30px;
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+	z-index: 100;
+}
+
+h1.font-effect-outline {   /*this overrides the google font styling*/
 	color: red;
 }
 
@@ -29,11 +58,14 @@ h2 {
 	font-weight: 900;
 	height: 50px;
 }
+/*END HEADER CSS*/
 
-p {
-	line-height: 200%;
-	font-size: 15px;
-	font-weight: 600;
+/*START MAIN GAME CONTAINER CSS*/
+#game-container {
+	width: 65%;
+	float: left;
+	padding: 15px;
+	position: relative;
 }
 
 #invalid-char {
@@ -46,43 +78,6 @@ p {
 	left: 0;
 }
 
-#header {
-	padding-top: 30px;
-	margin: 0 auto;
-	text-align: center;
-	width: 100%;
-	z-index: 100;
-}
-
-#main-container {
-	margin: 40px auto 0 auto;
-	width: 70%;
-	height: 400px;
-}
-
-#game-container,#winLoss-Container {
-	background-color: rgba(255,255,255,.9);
-	border-radius: 5px;
-	-webkit-box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-	-moz-box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Firefox 3.5 - 3.6 */
-	box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.1);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-	border: 2px solid #222223;
-}
-#winLoss-Container {
-	width: 15%;
-	float: left;
-	margin-right: 5%;
-	padding: 3%;
-}
-
-#game-container {
-	width: 65%;
-	float: left;
-	padding: 15px;
-	position: relative;
-
-}
-
 #blanks {
 	font-size: 4vw;
 	text-align: center;
@@ -93,6 +88,7 @@ p {
 #imgWrap {
 	height: 200px;
 	width: 90%;
+	margin: 0 auto;
 }
 #characterImg {
 	height: 200px;
@@ -103,5 +99,14 @@ p {
 #randomMsg {
 	text-align: center;
 	font-size: 20px;
+}
+/*END MAIN GAME CONTAINER CSS*/
+
+/*WIN/LOSS SIDEBAR CSS*/
+#winLoss-Container {
+	width: 15%;
+	float: left;
+	margin-right: 5%;
+	padding: 3%;
 }
 
