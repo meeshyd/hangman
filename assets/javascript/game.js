@@ -118,7 +118,6 @@ function gameOver() {
         document.getElementById('wins').innerHTML = winCount;
         document.getElementById('wrong').innerHTML = "";
         //display Adventure Time character image that corresponds to wordChoice and a win message 
-        // document.getElementById('characterImg').style.display="block";
         document.getElementById('characterImg').src = picChoice;
         document.getElementById('randomMsg').innerHTML = winMsg[Math.floor(Math.random() * winMsg.length)];
         //reset game by calling start function
@@ -127,7 +126,6 @@ function gameOver() {
     }
     if (guessesLeft === 0){
         lossCount++;
-        // document.getElementById('characterImg').style.display="block";
         document.getElementById('characterImg').src = 'assets/images/lemongrab.gif';
         document.getElementById('losses').innerHTML = lossCount;
         document.getElementById('wrong').innerHTML = "";
