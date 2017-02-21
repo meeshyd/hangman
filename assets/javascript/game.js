@@ -98,7 +98,7 @@ function checkLetters(letters) {
 
 // END OF GAME FUNCTION - DETERMINES WIN/LOSE, UPDATES HTML, RESETS GAME
 function gameOver() {
-	//Array of favorite Adventure Time phrases to display on wins, not meant to correlate to character
+	//Array of favorite Adventure Time phrases to display on wins
 	var winMsg = [
 	'Mathematical!',
 	'Slamacow!',
@@ -118,22 +118,22 @@ function gameOver() {
         document.getElementById('wins').innerHTML = winCount;
         document.getElementById('wrong').innerHTML = "";
         //display Adventure Time character image that corresponds to wordChoice and a win message 
-        document.getElementById('characterImg').style.display="block";
+        // document.getElementById('characterImg').style.display="block";
         document.getElementById('characterImg').src = picChoice;
         document.getElementById('randomMsg').innerHTML = winMsg[Math.floor(Math.random() * winMsg.length)];
         //reset game by calling start function
         //also added delay to allow final letter to display before reset
-        setTimeout(function() { start(); }, 1300);
+        setTimeout(function() { start(); }, 1700);
     }
     if (guessesLeft === 0){
         lossCount++;
-        document.getElementById('characterImg').style.display="block";
+        // document.getElementById('characterImg').style.display="block";
         document.getElementById('characterImg').src = 'assets/images/lemongrab.gif';
         document.getElementById('losses').innerHTML = lossCount;
         document.getElementById('wrong').innerHTML = "";
         //reset game by calling start function
         //also added delay to allow final letter to display before reset
-        setTimeout(function() { start(); }, 1300);	
+        setTimeout(function() { start(); }, 1700);	
 	}
 }
 
