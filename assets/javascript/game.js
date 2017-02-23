@@ -14,11 +14,9 @@ var numberOfBlanks = 0;
 var blanksWins = [];
 var wrongLetters = [];
 var picChoice = '';
-//score keeping
 var winCount = 0;
 var lossCount= 0;
 var guessesLeft = 10;
-
 var charImg = document.getElementById('characterImg');
 var randomMsg = document.getElementById('random-msg');
 var blanksHTML = document.getElementById('blanks');
