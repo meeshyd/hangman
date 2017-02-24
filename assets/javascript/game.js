@@ -20,6 +20,22 @@ var guessesLeft = 10;
 var charImg = document.getElementById('characterImg');
 var randomMsg = document.getElementById('random-msg');
 var blanksHTML = document.getElementById('blanks');
+var soundHTML = document.getElementById('sound');
+var songHTML = document.getElementById('song');
+
+//RUN START FUNCTION - this calls the start function, which starts the game.
+start();
+
+//RECORD USER KEY PRESS FUNCTION
+//get user input and store in userGuess variable. 
+//run through check function. also calls gameOver function
+//to check for win/lose with every key press
+document.onkeyup = function(event) {
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+	document.getElementById('invalid-char').innerHTML = ('');
+	checkLetters(userGuess);
+	gameOver();
+}
 
 //START FUNCTION - resets variables from prior round, 
 //generates random word and splits into array of letters and array of blanks based on length
@@ -35,6 +51,8 @@ function start() {
 	'assets/images/memow.png'
 	];
 	//resets image, clears win message & variables
+	// soundHTML.src ='assets/sounds/Adventure-Time-Manlorette-Party.mp3';
+	soundHTML.src ='';
 	charImg.src = 'assets/images/questionMark.png';
 	randomMsg.innerHTML = "";
 	wrongLetters = [];
@@ -117,7 +135,7 @@ function gameOver() {
     //determine win or loss
 	if(wordChoiceLetters.join(" ") === blanksWins.join(" ")){
         winCount++;
-
+        soundHTML.src ='assets/sounds/win.wav';
         //update win counter & reset wrong letters bank
         document.getElementById('wins').innerHTML = winCount;
         wrongHTML.innerHTML = "";
@@ -126,29 +144,18 @@ function gameOver() {
         randomMsg.innerHTML = winMsg[Math.floor(Math.random() * winMsg.length)];
         //reset game by calling start function
         //also added delay to allow final letter to display before reset
-        setTimeout(function() { start(); }, 1700);
+        setTimeout(function() { start(); }, 1500);
     }
     if (guessesLeft === 0){
         lossCount++;
+        soundHTML.src ='assets/sounds/lose.wav';
         charImg.src = 'assets/images/lemongrab.gif';
         document.getElementById('losses').innerHTML = lossCount;
         wrongHTML.innerHTML = "";
         //reset game by calling start function
         //also added delay to allow final letter to display before reset
-        setTimeout(function() { start(); }, 1700);	
+        setTimeout(function() { start(); }, 1500);	
 	}
 }
 
-//RUN START FUNCTION - this calls the start function, which starts the game.
-start();
 
-//RECORD USER KEY PRESS FUNCTION
-//get user input and store in userGuess variable. 
-//run through check function. also calls gameOver function
-//to check for win/lose with every key press
-document.onkeyup = function(event) {
-	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	document.getElementById('invalid-char').innerHTML = ('');
-	checkLetters(userGuess);
-	gameOver();
-}
